@@ -1,7 +1,7 @@
-
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import com.google.gson.*;
 
 
 public class ParseJson {
@@ -15,11 +15,12 @@ public class ParseJson {
             // create a reader
             Reader reader = Files.newBufferedReader(Paths.get("SubwayStations.json"));
 
-            // convert JSON string to User object
-            Station station = gson.fromJson(reader, Station.class);
+            // convert JSON string to Feature object
+            Features feature = gson.fromJson(reader, Features.class);
 
-            // print user object
-            System.out.println(station);
+            // print feature object
+            System.out.println(feature);
+
 
             // close reader
             reader.close();
@@ -28,7 +29,7 @@ public class ParseJson {
                 Exception ex)
 
         {
-            ex.getMessage();
+            ex.printStackTrace();
         }
 
     }
