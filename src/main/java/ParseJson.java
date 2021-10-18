@@ -19,13 +19,13 @@ public class ParseJson {
             //Features[] features = gson.fromJson(reader, Features[].class);
 
             // convert JSON string to Feature object
-            Features features = gson.fromJson(reader, Features.class);
+            //Features features = gson.fromJson(reader, Features.class);
 
             // convert JSON string to Station object
-            //Station station = gson.fromJson(reader, Station.class);
+            Stations allStations = gson.fromJson(reader, Stations.class);
 
             // print feature object
-            System.out.println(features);
+            System.out.println(allStations);
 
             // close reader
             reader.close();
