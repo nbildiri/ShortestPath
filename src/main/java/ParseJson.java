@@ -15,18 +15,22 @@ public class ParseJson {
             // create a reader
             Reader reader = Files.newBufferedReader(Paths.get("SubwayStations.json"));
 
+            // convert JSON string to Feature[] object
+            //Features[] features = gson.fromJson(reader, Features[].class);
+
             // convert JSON string to Feature object
-            Features feature = gson.fromJson(reader, Features.class);
+            Features features = gson.fromJson(reader, Features.class);
+
+            // convert JSON string to Station object
+            //Station station = gson.fromJson(reader, Station.class);
 
             // print feature object
-            System.out.println(feature);
-
+            System.out.println(features);
 
             // close reader
             reader.close();
 
-        } catch(
-                Exception ex)
+        } catch(Exception ex)
 
         {
             ex.printStackTrace();
