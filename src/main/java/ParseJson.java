@@ -22,7 +22,7 @@ public class ParseJson {
             //Features features = gson.fromJson(reader, Features.class);
 
             // convert JSON string to Station object
-            Stations allStations = gson.fromJson(reader, Stations.class);
+            AllStations allStations = gson.fromJson(reader, AllStations.class);
 
             // print feature object
             System.out.println(allStations);

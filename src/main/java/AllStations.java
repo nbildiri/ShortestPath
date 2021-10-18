@@ -1,8 +1,8 @@
-public class Stations {
+public class AllStations {
 
     private Features[] features;
 
-    public Stations(Features[] features) {
+    public AllStations(Features[] features) {
         this.features = features;
     }
 }
