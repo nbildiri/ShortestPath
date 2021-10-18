@@ -23,4 +23,12 @@ public class Properties {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "Properties{" +
+                "objectId=" + objectId +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
