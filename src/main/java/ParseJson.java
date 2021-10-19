@@ -1,7 +1,7 @@
-
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import com.google.gson.*;
 
 
 public class ParseJson {
@@ -15,20 +15,20 @@ public class ParseJson {
             // create a reader
             Reader reader = Files.newBufferedReader(Paths.get("SubwayStations.json"));
 
-            // convert JSON string to User object
-            Station station = gson.fromJson(reader, Station.class);
 
-            // print user object
-            System.out.println(station);
+            // convert JSON string to Station object
+            AllStations allStations = gson.fromJson(reader, AllStations.class);
+
+            // print AllStations object
+            System.out.println(allStations.toString());
 
             // close reader
             reader.close();
 
-        } catch(
-                Exception ex)
+        } catch(Exception ex)
 
         {
-            ex.getMessage();
+            ex.printStackTrace();
         }
 
     }
