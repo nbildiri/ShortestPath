@@ -22,11 +22,10 @@ class ParseJsonTest {
 
         //objectId
         assertEquals("3",
-                stations.getFeatureInArray(2).getProperties().getObjectId());
+                stations.getFeatureInArray(2).getProperties().getObjectid());
 
         //coordinates
         assertEquals( -73.99106999861966,
-                40.73005400028978,
                 stations.getFeatureInArray(0).getGeometry().getCoordinateInArray(0));
 
     }

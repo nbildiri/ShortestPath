@@ -1,15 +1,15 @@
 public class Properties {
 
-    private String objectId;
+    private String objectid;
     private String name;
 
     public Properties(String objectId, String name) {
-        this.objectId = objectId;
+        this.objectid = objectId;
         this.name = name;
     }
 
-    public String getObjectId() {
-        return objectId;
+    public String getObjectid() {
+        return objectid;
     }
 
     public String getName() {
