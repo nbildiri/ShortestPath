@@ -1,4 +1,4 @@
-import java.util.Arrays;
+
 
 public class Geometry {
 
@@ -12,14 +12,8 @@ public class Geometry {
         return coordinates;
     }
 
-    public void setCoordinates(double[] coordinates) {
-        this.coordinates = coordinates;
+    public double getCoordinateInArray(int num) {
+        return coordinates[num];
     }
 
-    @Override
-    public String toString() {
-        return "Geometry{" +
-                "coordinates=" + Arrays.toString(coordinates) +
-                '}';
-    }
 }

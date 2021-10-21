@@ -16,14 +16,6 @@ public class Features {
         return geometry;
     }
 
-    public void setProperties(Properties properties) {
-        this.properties= properties;
-    }
-
-    public void setGeometry(Geometry geometry) {
-        this.geometry= geometry;
-    }
-
     @Override
     public String toString() {
         return "Features [Properties=" + properties + ", Geometry=" + geometry + "]";
