@@ -17,7 +17,6 @@ public class ParseLine {
 
         ArrayList<Line> lines = new ArrayList<>();
 
-        try {
             // create Gson instance
             Gson gson = new Gson();
 
@@ -25,20 +24,17 @@ public class ParseLine {
             Reader reader = Files.newBufferedReader(Paths.get("SubwayLines.json"));
 
             // convert JSON file to map
-            Map<?, ?> map = gson.fromJson(reader, Map.class);
+            Map<String, ArrayList<String>> map = gson.fromJson(reader, Map.class);
 
             // print map entries
-            for (Map.Entry<?, ?> entry : map.entrySet()) {
-                Line line= new Line((String)entry.getKey(), (ArrayList<String>)entry.getValue());
+            for (Map.Entry<String, ArrayList<String>> entry : map.entrySet()) {
+                Line line= new Line(entry.getKey(),entry.getValue());
                 lines.add(line);
             }
 
             // close reader
             reader.close();
 
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
         return lines;
     }
 }
