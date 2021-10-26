@@ -1,26 +1,17 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class AllStations {
 
-    private Features[] features;
+    private ArrayList<Features> features;
 
 
-    public AllStations(Features[] features) {
+    public AllStations(ArrayList<Features> features) {
         this.features = features;
     }
 
-    public Features[] getFeatures() {
+    public ArrayList<Features> getFeatures() {
         return features;
     }
 
-    public Features getFeatureInArray(int num) {
-        return features[num];
-    }
-
-    @Override
-    public String toString() {
-        return "AllStations{" +
-                "features=" + Arrays.toString(features) +
-                '}';
-    }
 }

@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Properties {
 
     private String objectid;
@@ -19,8 +22,8 @@ public class Properties {
         return name;
     }
 
-    public String[] getLines(){
-        return line.split("-");
+    public ArrayList<String> getLines(){
+        return new ArrayList<>(Arrays.asList(line.split("-")));
     }
 
 
