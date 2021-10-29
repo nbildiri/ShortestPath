@@ -1,9 +1,9 @@
-public class Features {
+public class Station {
 
     private Properties properties;
     private Geometry geometry;
 
-    public Features(Properties properties, Geometry geometry) {
+    public Station(Properties properties, Geometry geometry) {
         this.properties = properties;
         this.geometry = geometry;
     }
@@ -16,8 +16,9 @@ public class Features {
         return geometry;
     }
 
+
     @Override
     public String toString() {
-        return "Features [Properties=" + properties + ", Geometry=" + geometry + "]";
+        return "Station [Properties=" + properties + ", Geometry=" + geometry + "]";
     }
 }

@@ -2,7 +2,6 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -16,29 +15,29 @@ class ParseJsonTest {
 
         //then
         AllStations stations = parse.jsonReader();
+        Station station = stations.getStations().get(0);
 
         //when
 
         //name
         assertEquals("Astor Pl",
-                stations.getFeatures().get(0).getProperties().getName());
+                stations.getStations().get(0).getProperties().getName());
 
         //objectId
         assertEquals("3",
-                stations.getFeatures().get(2).getProperties().getObjectid());
+                stations.getStations().get(2).getProperties().getObjectid());
 
         //coordinates
         assertEquals(-73.99106999861966,
-                stations.getFeatures().get(0).getGeometry().getCoordinateInArray(0));
+                stations.getStations().get(0).getGeometry().getCoordinateInArray(0));
 
         //connection
-        Connections connections = new Connections("Astor Pl");
+       Connections connections = new Connections();
+       ArrayList<Station> conn = connections.getConnections(station, stations);
 
-        ArrayList<String> connectedStations = new ArrayList<>();
+       assertTrue(conn.contains(stations.getStations().get(0)));
 
-        assertTrue(connections.getConnections().contains("2"));
-        assertTrue(connections.getConnections().contains("4"));
-        assertTrue(connections.getConnections().contains("427"));
+
 
     }
 

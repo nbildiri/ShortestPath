@@ -1,44 +1,29 @@
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Connections {
 
-    private String station;
-    private ArrayList<String> connections;
+    private ArrayList<Station> connections = new ArrayList<>();
 
-    public Connections(String station) {
-        this.station = station;
-    }
+    public ArrayList<Station> getConnections(Station station, AllStations allStations) {
 
-    public ArrayList<String> getConnections() throws IOException {
-
-        ParseJson parseStation = new ParseJson();
-        AllStations stations = parseStation.jsonReader();
-
-        //get lines for station given
-        ArrayList<String> connections = new ArrayList<>();
-
-        ArrayList<String> lines = new ArrayList<>();
-        for (Features eachStation : stations.getFeatures()) {
-            if (eachStation.getProperties().getName().equalsIgnoreCase(station)) {
-                lines = eachStation.getProperties().getLines();
-            }
-        }
-
-        for (Features eachStation : stations.getFeatures()) {
-            ArrayList<String> stationLines = eachStation.getProperties().getLines();
-
-            for (String line : lines) {
-                for (String stationLine : stationLines) {
-                    if (stationLine.equals(line)) {
-                        connections.add(eachStation.getProperties().getObjectid());
+        for (Station eachStation : allStations.getStations()) {
+            for (int i = 0; i < station.getProperties().getLines().size(); i++) {
+                for (int j = 0; j < eachStation.getProperties().getLines().size(); j++) {
+                    if (station.getProperties().getLines().get(i).equals
+                            (eachStation.getProperties().getLines().get(j))) {
+                        connections.add(eachStation);
                     }
                 }
             }
         }
+        connections = removeDuplicates(connections);
+        return connections;
+    }
 
-        ArrayList<String> tempList = new ArrayList<String>();
-        for (String element : connections) {
+    public ArrayList<Station> removeDuplicates(ArrayList<Station> connections) {
+        ArrayList<Station> tempList = new ArrayList<>();
+        for (Station element : connections) {
             // If this element is not present in tempList
             // then add it
             if (!tempList.contains(element)) {
@@ -48,4 +33,7 @@ public class Connections {
         return tempList;
     }
 }
+
+
+
 

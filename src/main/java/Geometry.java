@@ -1,19 +1,19 @@
-
+import java.util.ArrayList;
 
 public class Geometry {
 
-    private double[] coordinates;
+    private ArrayList<Double> coordinates;
 
-    public Geometry(double[] coordinates) {
+    public Geometry(ArrayList<Double> coordinates) {
         this.coordinates = coordinates;
     }
 
-    public double[] getCoordinates() {
+    public ArrayList<Double> getCoordinates() {
         return coordinates;
     }
 
     public double getCoordinateInArray(int num) {
-        return coordinates[num];
+        return coordinates.get(num);
     }
 
 }
