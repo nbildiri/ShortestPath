@@ -1,7 +1,10 @@
+import java.util.ArrayList;
+
 public class Station {
 
     private Properties properties;
     private Geometry geometry;
+    private ArrayList<Connections> connections;
 
     public Station(Properties properties, Geometry geometry) {
         this.properties = properties;

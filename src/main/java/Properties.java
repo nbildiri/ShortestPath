@@ -1,5 +1,5 @@
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Properties {
 
@@ -22,8 +22,8 @@ public class Properties {
         return name;
     }
 
-    public ArrayList<String> getLines(){
-        return new ArrayList<>(Arrays.asList(line.split("-")));
+    public List<String> getLines(){
+        return Arrays.asList(line.split("-"));
     }
 
 
