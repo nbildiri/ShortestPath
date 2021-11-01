@@ -5,6 +5,8 @@ public class Station {
     private Properties properties;
     private Geometry geometry;
     private ArrayList<Station> connections;
+    private double distance = Integer.MAX_VALUE;
+    Connections conn = new Connections();
 
     public Station(Properties properties, Geometry geometry) {
         this.properties = properties;
@@ -19,8 +21,19 @@ public class Station {
         return geometry;
     }
 
-    @Override
-    public String toString() {
-        return "Station [Properties=" + properties + ", Geometry=" + geometry + "]";
+    public void setDistance(double distance) {
+        this.distance = distance;
     }
+
+    public double getDistance(Station station)
+    {
+        return  conn.getDistanceBetweenStations(this, station);
+    }
+
+    /*public void connect(Station station)
+    {
+        connections.add(station);
+        station.connections.add(this);
+    }*/
+
 }

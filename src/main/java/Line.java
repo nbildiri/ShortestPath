@@ -11,7 +11,7 @@ public class Line {
         this.stops = stops;
     }
 
-    public Object getLine() {
+    public String getLine() {
         return line;
     }
 

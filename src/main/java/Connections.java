@@ -43,7 +43,7 @@ public class Connections {
         return closestStation;
     }
 
-    public double getDistanceBetweenStations(Station station_1, Station station_2) {
+   public double getDistanceBetweenStations(Station station_1, Station station_2) {
 
         double dist = Math.sqrt((Math.pow((station_2.getGeometry().getLatitude() -
                 station_1.getGeometry().getLatitude()), 2)) +
@@ -53,6 +53,7 @@ public class Connections {
         return dist;
     }
 
+    /*
     public void stationConnections(AllStations stations, double lat_1, double lon_1, double lat_2, double lon_2) {
 
         Station startPoint = getClosestStation(stations, lat_1, lon_1);
@@ -65,8 +66,8 @@ public class Connections {
 
     }
 
-    // get specific connections using connection array
-    public void getConnections(ArrayList<Station> connections, Station station) {
+    // get specific connections using connection array and distance between each connection
+    public Station getConnections(ArrayList<Station> connections, Station station) {
         double closestDist = Integer.MAX_VALUE;
         double dist;
         Station closestStation = null;
@@ -80,7 +81,8 @@ public class Connections {
                 closestDist = dist;
             }
         }
-    }
+        return closestStation;
+    }*/
 }
 
 

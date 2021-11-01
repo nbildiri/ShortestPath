@@ -38,6 +38,7 @@ class ParseJsonTest {
         assertTrue(conn.contains(stations.getStations().get(0)));
 
         //closest Station
+
         Station closestStation;
         //start point - astor pl
         closestStation = connections.getClosestStation(stations, -73.99106999861966,
