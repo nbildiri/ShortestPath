@@ -8,8 +8,8 @@ public class AllStations {
     private ArrayList<Station> stations;
 
 
-    public AllStations(ArrayList<Station> features) {
-        this.stations = features;
+    public AllStations(ArrayList<Station> stations) {
+        this.stations = stations;
     }
 
     public ArrayList<Station> getStations() {

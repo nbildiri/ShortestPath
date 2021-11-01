@@ -29,13 +29,28 @@ class ParseJsonTest {
 
         //coordinates
         assertEquals(-73.99106999861966,
-                stations.getStations().get(0).getGeometry().getCoordinateInArray(0));
+                stations.getStations().get(0).getGeometry().getCoordinates().get(0));
 
         //connection
-       Connections connections = new Connections();
-       ArrayList<Station> conn = connections.getConnections(station, stations);
+        Connections connections = new Connections();
+        ArrayList<Station> conn = connections.getConnections(stations, station);
 
-       assertTrue(conn.contains(stations.getStations().get(0)));
+        assertTrue(conn.contains(stations.getStations().get(0)));
+
+        //closest Station
+        Station closestStation;
+        //start point - astor pl
+        closestStation = connections.getClosestStation(stations, -73.99106999861966,
+                40.73005400028978);
+
+        assertEquals(stations.getStations().get(0).getProperties().getName(), closestStation.getProperties().getName());
+
+
+        //end point - 238th street
+        closestStation = connections.getClosestStation(stations,  -73.90087000018522,
+                40.88466700064975);
+
+        assertEquals(stations.getStations().get(5).getProperties().getName(), closestStation.getProperties().getName());
 
 
 
@@ -60,5 +75,6 @@ class ParseJsonTest {
 
 
     }
+
 
 }

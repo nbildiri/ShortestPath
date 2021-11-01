@@ -12,8 +12,12 @@ public class Geometry {
         return coordinates;
     }
 
-    public double getCoordinateInArray(int num) {
-        return coordinates.get(num);
+    public double getLatitude(){
+        return  getCoordinates().get(0);
+    }
+
+    public double getLongitude(){
+        return  getCoordinates().get(1);
     }
 
 }

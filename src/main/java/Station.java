@@ -4,7 +4,7 @@ public class Station {
 
     private Properties properties;
     private Geometry geometry;
-    private ArrayList<Connections> connections;
+    private ArrayList<Station> connections;
 
     public Station(Properties properties, Geometry geometry) {
         this.properties = properties;
@@ -18,7 +18,6 @@ public class Station {
     public Geometry getGeometry() {
         return geometry;
     }
-
 
     @Override
     public String toString() {
