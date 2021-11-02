@@ -1,12 +1,13 @@
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Line {
 
     private String line;
-    private ArrayList<Integer> stops;
+    private List<Integer> stops;
 
-    public Line(String line, ArrayList<Integer> stops) {
+    public Line(String line,List<Integer> stops) {
         this.line = line;
         this.stops = stops;
     }
@@ -15,7 +16,7 @@ public class Line {
         return line;
     }
 
-    public ArrayList<Integer> getStops() {
+    public List<Integer> getStops() {
         return stops;
     }
 
