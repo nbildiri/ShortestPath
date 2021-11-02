@@ -2,14 +2,6 @@ import java.util.ArrayList;
 
 public class Graph {
 
-
-
-
-
-
-
-
-
     /*
   Let the node at which we are starting at be called the initial node. Let the distance of node Y be the distance from the initial node to Y. Dijkstra's algorithm will initially start with infinite distances and will try to improve them step by step.
 
@@ -34,34 +26,62 @@ public class Graph {
     }
 
 
-    public void temp() {
+    public ArrayList<Station> findShortestPath() {
 
         //station is starting point and set distance to zero
         Station startPoint = station;
         Station endPoint = destination;
-        startPoint.setDistance(0);
+
+        //construct connection object
+        Connections connection = new Connections();
+
+        //create unvisited list calling getConnvections()
+        ArrayList<Station> unvisited = connection.getConnections(stations, station);
+        ArrayList<Station> visited = new ArrayList<>();
+
+        visited.add(startPoint);
         Station curr = startPoint;
+        unvisited.remove(startPoint);
+        double dist;
 
-        Connections connections = new Connections();
+        if (unvisited != null) {
+            startPoint.setDistance(connection.getDistanceBetweenStations(curr, unvisited.get(0)));
 
-       /* ArrayList<Station> unvisited = connections.getConnections(stations, station);
+            //set distance for each connected station
+            for (Station stat : unvisited) {
+                //set distance to current station
+                dist = connection.getDistanceBetweenStations(curr, stat);
+                stat.setDistance(dist);
+            }
 
-        for(Station stat : stations.getStations())
-        {
+            curr = unvisited.get(0);
 
-        }*/
+            do {
+                for (Station stat : unvisited) {
+                    if (stat.equals(endPoint)) {
+                        visited.add(endPoint);
+                        return visited;
+                    }
 
+                    if (stat.getDistance() < curr.getDistance()) {
+                        curr = stat;
+                    }
+                }
+                visited.add(curr);
+                unvisited.remove(curr);
+
+            } while (unvisited != null);
+        }
+        return visited;
     }
 
 
     public double distance(Station station_1, Station station_2) {
 
-        double dist = Math.sqrt((Math.pow((station_2.getGeometry().getLatitude() -
+        return Math.sqrt((Math.pow((station_2.getGeometry().getLatitude() -
                 station_1.getGeometry().getLatitude()), 2)) +
                 (Math.pow((station_2.getGeometry().getLongitude() -
                         station_2.getGeometry().getLongitude()), 2)));
-
-        return dist;
     }
 }
 

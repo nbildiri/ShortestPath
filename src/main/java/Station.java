@@ -5,12 +5,13 @@ public class Station {
     private Properties properties;
     private Geometry geometry;
     private ArrayList<Station> connections;
-    private double distance = Integer.MAX_VALUE;
+    private double distance;
     Connections conn = new Connections();
 
     public Station(Properties properties, Geometry geometry) {
         this.properties = properties;
         this.geometry = geometry;
+        distance = Integer.MAX_VALUE;
     }
 
     public Properties getProperties() {
@@ -25,9 +26,9 @@ public class Station {
         this.distance = distance;
     }
 
-    public double getDistance(Station station)
+    public double getDistance()
     {
-        return  conn.getDistanceBetweenStations(this, station);
+        return  distance;
     }
 
     /*public void connect(Station station)

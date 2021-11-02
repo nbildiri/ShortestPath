@@ -53,8 +53,12 @@ class ParseJsonTest {
 
         assertEquals(stations.getStations().get(5).getProperties().getName(), closestStation.getProperties().getName());
 
+        //get shortest path
+        Graph graph = new Graph(stations, station, stations.getStations().get(91));
+        ArrayList<Station> shortestPath = graph.findShortestPath();
 
-
+        assertEquals(2, shortestPath.size());
+        assertTrue(shortestPath.contains(stations.getStations().get(91)));
     }
 
     @Test
@@ -72,7 +76,7 @@ class ParseJsonTest {
         assertEquals("A", lines.get(0).getLine());
 
         //stop
-        assertEquals("55", lines.get(0).getStops().get(0));
+        assertEquals(55, lines.get(0).getStops().get(0));
 
 
     }

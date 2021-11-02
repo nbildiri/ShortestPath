@@ -4,9 +4,9 @@ import java.util.ArrayList;
 public class Line {
 
     private String line;
-    private ArrayList<String> stops;
+    private ArrayList<Integer> stops;
 
-    public Line(String line, ArrayList<String> stops) {
+    public Line(String line, ArrayList<Integer> stops) {
         this.line = line;
         this.stops = stops;
     }
@@ -15,7 +15,7 @@ public class Line {
         return line;
     }
 
-    public ArrayList<String> getStops() {
+    public ArrayList<Integer> getStops() {
         return stops;
     }
 
