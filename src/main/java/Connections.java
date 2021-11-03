@@ -1,9 +1,39 @@
 import java.util.ArrayList;
-import java.util.stream.Collectors;
+import java.util.HashMap;
+import java.util.Objects;
 
 public class Connections {
 
-    public ArrayList<Station> getConnections(AllStations allStations, Station station) {
+    public ArrayList<Station> getConnections(ArrayList<Line> lines, AllStations allStations, Station station) {
+
+        HashMap<Integer, Station> nameToId = new HashMap<>();
+        for (Station stat : allStations.getStations()) {
+            nameToId.put(stat.getProperties().getObjectid(), stat);
+        }
+
+        ArrayList<Station> connections = new ArrayList<>();
+        connections.add(station);
+        Station currStation;
+
+        for (Line line : lines) {
+            for (int index = 0; index < line.getStops().size(); index++) {
+                if (line.getStops().get(index) == station.getProperties().getObjectid()) {
+
+                    //if not first in list
+                    if (!Objects.equals(line.getStops().get(index), line.getStops().get(0)))
+                        connections.add(nameToId.get(line.getStops().get(index - 1)));
+
+                    //if not last in list
+                    if (line.getStops().get(index)  != line.getStops().get(line.getStops().size()- 1))
+                        connections.add(nameToId.get(line.getStops().get(index + 1)));
+                }
+            }
+        }
+        return connections;
+    }
+
+
+   /* public ArrayList<Station> getConnections(AllStations allStations, Station station) {
 
         ArrayList<Station> connections = new ArrayList<>();
 
@@ -22,7 +52,7 @@ public class Connections {
                 .collect(Collectors.toList());
 
         return connections;
-    }
+    }*/
 
     public Station getClosestStation(AllStations stations, double lat, double lon) {
 
@@ -53,6 +83,7 @@ public class Connections {
         return dist;
     }
 
+    /*
     public void stationConnections(AllStations stations, double lat_1, double lon_1, double lat_2, double lon_2) {
 
         Station startPoint = getClosestStation(stations, lat_1, lon_1);
@@ -65,8 +96,8 @@ public class Connections {
 
     }
 
-    // get specific connections using connection array
-    public void getConnections(ArrayList<Station> connections, Station station) {
+    // get specific connections using connection array and distance between each connection
+    public Station getConnections(ArrayList<Station> connections, Station station) {
         double closestDist = Integer.MAX_VALUE;
         double dist;
         Station closestStation = null;
@@ -80,7 +111,9 @@ public class Connections {
                 closestDist = dist;
             }
         }
-    }
+        return closestStation;
+    }*/
+
 }
 
 

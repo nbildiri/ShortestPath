@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -7,14 +8,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ParseJsonTest {
 
+
     @Test
     void jsonReaderParseStations() throws IOException {
 
         //given
-        ParseJson parse = new ParseJson();
+        ParseJson parseStation = new ParseJson();
 
         //then
-        AllStations stations = parse.jsonReader();
+        AllStations stations = parseStation.jsonReader();
         Station station = stations.getStations().get(0);
 
         //when
@@ -24,18 +26,56 @@ class ParseJsonTest {
                 stations.getStations().get(0).getProperties().getName());
 
         //objectId
-        assertEquals("3",
+        assertEquals(3,
                 stations.getStations().get(2).getProperties().getObjectid());
 
         //coordinates
         assertEquals(-73.99106999861966,
                 stations.getStations().get(0).getGeometry().getCoordinates().get(0));
 
+    }
+
+    @Test
+    void jsonReaderParseLines() throws IOException {
+
+        //given
+        ParseLine parseLine = new ParseLine();
+
+        //then
+        ArrayList<Line> lines = parseLine.parseLine();
+
+        //when
+
+        //line
+        assertEquals("A", lines.get(0).getLine());
+
+        //stop
+        assertEquals(55, lines.get(0).getStops().get(0));
+
+
+    }
+
+    @Test
+    void getConnectionsTest() throws IOException {
+        //given
+        ParseJson parseStation = new ParseJson();
+        ParseLine parseLine = new ParseLine();
+
+        //then
+        AllStations stations = parseStation.jsonReader();
+        ArrayList<Line> lines = parseLine.parseLine();
+        Station station = stations.getStations().get(83);
+
+        //when
+
         //connection
         Connections connections = new Connections();
-        ArrayList<Station> conn = connections.getConnections(stations, station);
+        ArrayList<Station> conn = connections.getConnections(lines, stations, station);
 
-        assertTrue(conn.contains(stations.getStations().get(0)));
+        assertTrue(conn.contains(stations.getStations().get(83)));
+        assertTrue(conn.contains(stations.getStations().get(440)));
+        assertTrue(conn.contains(stations.getStations().get(432)));
+
 
         //closest Station
         Station closestStation;
@@ -47,34 +87,18 @@ class ParseJsonTest {
 
 
         //end point - 238th street
-        closestStation = connections.getClosestStation(stations,  -73.90087000018522,
+        closestStation = connections.getClosestStation(stations, -73.90087000018522,
                 40.88466700064975);
 
         assertEquals(stations.getStations().get(5).getProperties().getName(), closestStation.getProperties().getName());
+/*
+        //get shortest path
+        Graph graph = new Graph(stations, station, stations.getStations().get(91));
+        ArrayList<Station> shortestPath = graph.findShortestPath();
 
-
-
+        assertEquals(2, shortestPath.size());
+        assertTrue(shortestPath.contains(stations.getStations().get(91)));
+    */
     }
-
-    @Test
-    void jsonReaderParseLines() throws IOException {
-
-        //given
-        ParseLine parse = new ParseLine();
-
-        //then
-        ArrayList<Line> lines = parse.parseLine();
-
-        //when
-
-        //line
-        assertEquals("A", lines.get(0).getLine());
-
-        //stop
-        assertEquals("55", lines.get(0).getStops().get(0));
-
-
-    }
-
-
 }
+

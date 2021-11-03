@@ -3,11 +3,12 @@ import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.CallableStatement;
+import java.util.HashMap;
 
 import com.google.gson.*;
 
 
-public class ParseJson {
+public class ParseJson extends HashMap{
 
     public AllStations jsonReader() throws IOException {
 

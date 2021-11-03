@@ -1,14 +1,17 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Station {
 
     private Properties properties;
     private Geometry geometry;
     private ArrayList<Station> connections;
+    private double distance;
 
     public Station(Properties properties, Geometry geometry) {
         this.properties = properties;
         this.geometry = geometry;
+        distance = Integer.MAX_VALUE;
     }
 
     public Properties getProperties() {
@@ -19,8 +22,13 @@ public class Station {
         return geometry;
     }
 
-    @Override
-    public String toString() {
-        return "Station [Properties=" + properties + ", Geometry=" + geometry + "]";
+    public void setDistance(double distance) {
+        this.distance = distance;
     }
+
+    public double getDistance()
+    {
+        return  distance;
+    }
+
 }

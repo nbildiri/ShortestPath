@@ -1,21 +1,22 @@
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Line {
 
     private String line;
-    private ArrayList<String> stops;
+    private List<Integer> stops;
 
-    public Line(String line, ArrayList<String> stops) {
+    public Line(String line,List<Integer> stops) {
         this.line = line;
         this.stops = stops;
     }
 
-    public Object getLine() {
+    public String getLine() {
         return line;
     }
 
-    public ArrayList<String> getStops() {
+    public List<Integer> getStops() {
         return stops;
     }
 
