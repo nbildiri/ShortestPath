@@ -7,7 +7,7 @@ public class Properties {
     private String name;
     private String line;
 
-    public Properties(Integer objectid, String name, String line) {
+    public Properties(int objectid, String name, String line) {
         this.objectid = objectid;
         this.name = name;
         this.line = line;
