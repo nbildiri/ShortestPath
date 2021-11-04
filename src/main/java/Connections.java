@@ -49,9 +49,9 @@ public class Connections {
     }
 
 
-    public double getDistanceBetweenStations(Station station_1, Station station_2) {
+    public double getDistanceBetweenStations(Station station1, Station station2) {
 
-        return distance(station_1, station_2.getGeometry().getLatitude(), station_2.getGeometry().getLongitude());
+        return distance(station1, station2.getGeometry().getLatitude(), station2.getGeometry().getLongitude());
     }
 
     private double distance(Station station, double lat, double lon) {
