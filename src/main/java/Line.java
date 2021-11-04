@@ -1,5 +1,3 @@
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
@@ -7,7 +5,7 @@ public class Line {
     private String line;
     private List<Integer> stops;
 
-    public Line(String line,List<Integer> stops) {
+    public Line(String line, List<Integer> stops) {
         this.line = line;
         this.stops = stops;
     }

@@ -10,16 +10,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ParseLine{
+public class ParseLine {
 
     public ArrayList<Line> parseLine() throws IOException {
 
         ArrayList<Line> lines = new ArrayList<>();
 
-        // create Gson instance
         Gson gson = new Gson();
 
-        // create a reader
         Reader reader = Files.newBufferedReader(Paths.get("SubwayLines.json"));
 
         // convert JSON file to map
@@ -31,7 +29,6 @@ public class ParseLine{
             lines.add(line);
         }
 
-        // close reader
         reader.close();
 
         return lines;

@@ -15,11 +15,11 @@ class ParseJsonTest {
         //given
         ParseJson parseStation = new ParseJson();
 
-        //then
+        //when
         AllStations stations = parseStation.jsonReader();
         Station station = stations.getStations().get(0);
 
-        //when
+        //then
 
         //name
         assertEquals("Astor Pl",
@@ -41,10 +41,10 @@ class ParseJsonTest {
         //given
         ParseLine parseLine = new ParseLine();
 
-        //then
+        //when
         ArrayList<Line> lines = parseLine.parseLine();
 
-        //when
+        //then
 
         //line
         assertEquals("A", lines.get(0).getLine());
@@ -56,17 +56,17 @@ class ParseJsonTest {
     }
 
     @Test
-    void getConnectionsTest() throws IOException {
+    void getConnections() throws IOException {
         //given
         ParseJson parseStation = new ParseJson();
         ParseLine parseLine = new ParseLine();
 
-        //then
+        //when
         AllStations stations = parseStation.jsonReader();
         ArrayList<Line> lines = parseLine.parseLine();
         Station station = stations.getStations().get(83);
 
-        //when
+        //then
 
         //connection
         Connections connections = new Connections();

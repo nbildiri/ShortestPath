@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Objects;
 
 public class Connections {
 
@@ -20,39 +19,17 @@ public class Connections {
                 if (line.getStops().get(index) == station.getProperties().getObjectid()) {
 
                     //if not first in list
-                    if (!Objects.equals(line.getStops().get(index), line.getStops().get(0)))
+                    if (index != 0)
                         connections.add(nameToId.get(line.getStops().get(index - 1)));
 
                     //if not last in list
-                    if (line.getStops().get(index)  != line.getStops().get(line.getStops().size()- 1))
+                    if (line.getStops().get(index) != line.getStops().get(line.getStops().size() - 1))
                         connections.add(nameToId.get(line.getStops().get(index + 1)));
                 }
             }
         }
         return connections;
     }
-
-
-   /* public ArrayList<Station> getConnections(AllStations allStations, Station station) {
-
-        ArrayList<Station> connections = new ArrayList<>();
-
-        for (Station eachStation : allStations.getStations()) {
-            for (String stationLine : station.getProperties().getLines()) {
-                for (String eachStationLine : eachStation.getProperties().getLines()) {
-                    if (stationLine.equals(eachStationLine)) {
-                        connections.add(eachStation);
-                    }
-                }
-            }
-        }
-        //remove duplicates
-        connections = (ArrayList<Station>) connections.stream()
-                .distinct()
-                .collect(Collectors.toList());
-
-        return connections;
-    }*/
 
     public Station getClosestStation(AllStations stations, double lat, double lon) {
 
@@ -61,26 +38,26 @@ public class Connections {
         Station closestStation = null;
 
         for (Station station : stations.getStations()) {
-            dist = Math.sqrt((Math.pow((station.getGeometry().getLatitude() - lat), 2)) +
-                    (Math.pow((station.getGeometry().getLongitude() - lon), 2)));
+            dist = distance(station, lat, lon);
 
             if (dist < closestDist) {
                 closestStation = station;
                 closestDist = dist;
             }
         }
-
         return closestStation;
     }
 
+
     public double getDistanceBetweenStations(Station station_1, Station station_2) {
 
-        double dist = Math.sqrt((Math.pow((station_2.getGeometry().getLatitude() -
-                station_1.getGeometry().getLatitude()), 2)) +
-                (Math.pow((station_2.getGeometry().getLongitude() -
-                        station_2.getGeometry().getLongitude()), 2)));
+        return distance(station_1, station_2.getGeometry().getLatitude(), station_2.getGeometry().getLongitude());
+    }
 
-        return dist;
+    private double distance(Station station, double lat, double lon) {
+
+        return Math.sqrt((Math.pow((station.getGeometry().getLatitude() - lat), 2)) +
+                (Math.pow((station.getGeometry().getLongitude() - lon), 2)));
     }
 
     /*

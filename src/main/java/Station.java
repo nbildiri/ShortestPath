@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Station {
 
@@ -26,9 +25,8 @@ public class Station {
         this.distance = distance;
     }
 
-    public double getDistance()
-    {
-        return  distance;
+    public double getDistance() {
+        return distance;
     }
 
 }

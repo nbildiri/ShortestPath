@@ -3,7 +3,7 @@ import java.util.List;
 
 public class Properties {
 
-    private Integer objectid;
+    private int objectid;
     private String name;
     private String line;
 
@@ -22,7 +22,7 @@ public class Properties {
         return name;
     }
 
-    public List<String> getLines(){
+    public List<String> getLines() {
         return Arrays.asList(line.split("-"));
     }
 
