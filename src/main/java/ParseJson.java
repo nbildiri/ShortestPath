@@ -6,7 +6,7 @@ import java.nio.file.Paths;
 import com.google.gson.*;
 
 
-public class ParseJson{
+public class ParseJson {
 
     public AllStations jsonReader() throws IOException {
 

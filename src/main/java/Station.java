@@ -5,7 +5,7 @@ public class Station {
     private Properties properties;
     private Geometry geometry;
     private ArrayList<Station> connections;
-    private double distance;
+    private int distance;
 
     public Station(Properties properties, Geometry geometry) {
         this.properties = properties;
@@ -21,12 +21,15 @@ public class Station {
         return geometry;
     }
 
-    public void setDistance(double distance) {
+    public void setDistance(int distance) {
         this.distance = distance;
     }
 
-    public double getDistance() {
+    public int getDistance() {
         return distance;
     }
 
+    public ArrayList<Station> getConnections() {
+        return connections;
+    }
 }

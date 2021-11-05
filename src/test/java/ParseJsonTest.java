@@ -1,4 +1,3 @@
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -72,10 +71,27 @@ class ParseJsonTest {
         Connections connections = new Connections();
         ArrayList<Station> conn = connections.getConnections(lines, stations, station);
 
-        assertTrue(conn.contains(stations.getStations().get(83)));
         assertTrue(conn.contains(stations.getStations().get(440)));
         assertTrue(conn.contains(stations.getStations().get(432)));
 
+    }
+
+    @Test
+    void closestStation() throws IOException {
+        //given
+        ParseJson parseStation = new ParseJson();
+        ParseLine parseLine = new ParseLine();
+
+        //when
+        AllStations stations = parseStation.jsonReader();
+        ArrayList<Line> lines = parseLine.parseLine();
+        Station station = stations.getStations().get(83);
+
+        //then
+
+        //connection
+        Connections connections = new Connections();
+        ArrayList<Station> conn = connections.getConnections(lines, stations, station);
 
         //closest Station
         Station closestStation;
@@ -91,14 +107,28 @@ class ParseJsonTest {
                 40.88466700064975);
 
         assertEquals(stations.getStations().get(5).getProperties().getName(), closestStation.getProperties().getName());
-/*
-        //get shortest path
-        Graph graph = new Graph(stations, station, stations.getStations().get(91));
-        ArrayList<Station> shortestPath = graph.findShortestPath();
 
-        assertEquals(2, shortestPath.size());
-        assertTrue(shortestPath.contains(stations.getStations().get(91)));
-    */
+    }
+
+    @Test
+    void shortestPath() throws IOException {
+
+        //given
+        ParseJson parseStation = new ParseJson();
+
+        //when
+        AllStations stations = parseStation.jsonReader();
+        ArrayList<Station> shortestPath;
+        Station startStation = stations.getStations().get(83);
+        Station destination = stations.getStations().get(370);
+
+        //from "W 4th St - Washington Sq (Lower)" to "Lower East Side - 2nd Ave"
+        ShortestPath path = new ShortestPath(stations, startStation, destination);
+        shortestPath = path.getShortestPath();
+
+        //then
+        assertEquals(3, shortestPath.size());
+        assertTrue(shortestPath.contains(stations.getStations().get(432)));
     }
 }
 
