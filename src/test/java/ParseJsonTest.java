@@ -64,15 +64,12 @@ class ParseJsonTest {
         AllStations stations = parseStation.jsonReader();
         ArrayList<Line> lines = parseLine.parseLine();
         Station station = stations.getStations().get(83);
+        Connections connections = new Connections();
+        connections.setAllConnections(stations, lines);
 
         //then
-
-        //connection
-        Connections connections = new Connections();
-        ArrayList<Station> conn = connections.getConnections(lines, stations, station);
-
-        assertTrue(conn.contains(stations.getStations().get(440)));
-        assertTrue(conn.contains(stations.getStations().get(432)));
+        assertTrue(station.getConnections().contains(stations.getStations().get(440)));
+        assertTrue(station.getConnections().contains(stations.getStations().get(432)));
 
     }
 
@@ -91,7 +88,6 @@ class ParseJsonTest {
 
         //connection
         Connections connections = new Connections();
-        ArrayList<Station> conn = connections.getConnections(lines, stations, station);
 
         //closest Station
         Station closestStation;
@@ -115,10 +111,15 @@ class ParseJsonTest {
 
         //given
         ParseJson parseStation = new ParseJson();
+        ParseLine parseLine = new ParseLine();
 
         //when
         AllStations stations = parseStation.jsonReader();
-        ArrayList<Station> shortestPath;
+        ArrayList<Line> lines = parseLine.parseLine();
+        Connections connections = new Connections();
+        connections.setAllConnections(stations, lines);
+        int shortestPath;
+
         Station startStation = stations.getStations().get(83);
         Station destination = stations.getStations().get(370);
 
@@ -127,8 +128,7 @@ class ParseJsonTest {
         shortestPath = path.getShortestPath();
 
         //then
-        assertEquals(3, shortestPath.size());
-        assertTrue(shortestPath.contains(stations.getStations().get(432)));
+        assertEquals(2, shortestPath);
     }
 }
 

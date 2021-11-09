@@ -1,5 +1,6 @@
 
-import java.util.ArrayList;
+import java.util.*;
+import java.util.Queue;
 
 public class ShortestPath {
 
@@ -13,32 +14,45 @@ public class ShortestPath {
         this.destination = destination;
     }
 
-    public ArrayList<Station> getShortestPath() {
+    public int getShortestPath() {
+
         ArrayList<Station> unvisited = allStations.getStations();
         ArrayList<Station> visited = new ArrayList<>();
-        Station shortest = startPoint;
+        ArrayList<Station> conn = new ArrayList<>();
+        ArrayList<Station> prev = new ArrayList<>();
         startPoint.setDistance(0);
         Station curr = startPoint;
-        int addDist = 1;
-
+        conn.add(startPoint);
 
         do {
-            for (Station connectedStation : curr.getConnections()) {
-                if (connectedStation.getDistance() > curr.getDistance() + addDist) {
-                    connectedStation.setDistance(curr.getDistance() + addDist);
+            //get connections of current station
+            for (Station station : curr.getConnections()) {
+               
+                prev.add(station);
+                if(!visited.contains(station) && !conn.contains(station)) {
+                    if (conn.contains(station)) {
+                        if (station.getDistance() < curr.getDistance() + 1) {
+                            station.setDistance(station.getDistance() + 1);
+                        }
+                    }
+                    if (!conn.contains(station)) {
+                        //set distance to stations connected to curr
+                        station.setDistance(curr.getDistance() + 1);
+                    }
+                    conn.add(station);
                 }
-                if (connectedStation.getDistance() < shortest.getDistance()) {
-                    shortest = connectedStation;
-                }
-                unvisited.remove(curr);
-                visited.add(curr);
-                curr = shortest;
             }
-        } while (!visited.contains(destination));
+            unvisited.remove(curr);
+            conn.remove(conn.get(0));
+            visited.add(curr);
+            curr = conn.get(0);
+        }
+        while (!visited.contains(destination));
 
-        return visited;
+        return destination.getDistance();
     }
 }
+
 
 
 

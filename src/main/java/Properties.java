@@ -11,7 +11,6 @@ public class Properties {
         this.objectid = objectid;
         this.name = name;
         this.line = line;
-
     }
 
     public int getObjectid() {

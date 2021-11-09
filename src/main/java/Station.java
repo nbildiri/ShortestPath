@@ -1,10 +1,11 @@
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Station {
 
     private Properties properties;
     private Geometry geometry;
-    private ArrayList<Station> connections;
+    private HashSet<Station> connections;
     private int distance;
 
     public Station(Properties properties, Geometry geometry) {
@@ -29,7 +30,16 @@ public class Station {
         return distance;
     }
 
-    public ArrayList<Station> getConnections() {
+    public void connect(Station station) {
+        if (connections == null) {
+            connections = new HashSet<>();
+        }
+            connections.add(station);
+    }
+
+    public HashSet<Station> getConnections() {
         return connections;
     }
 }
+
+
