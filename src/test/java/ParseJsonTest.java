@@ -78,13 +78,11 @@ class ParseJsonTest {
         //given
         ParseJson parseStation = new ParseJson();
         ParseLine parseLine = new ParseLine();
-
-        //when
         AllStations stations = parseStation.jsonReader();
         ArrayList<Line> lines = parseLine.parseLine();
-        Station station = stations.getStations().get(83);
 
-        //then
+        //when
+        Station station = stations.getStations().get(83);
 
         //connection
         Connections connections = new Connections();
@@ -102,6 +100,7 @@ class ParseJsonTest {
         closestStation = connections.getClosestStation(stations, -73.90087000018522,
                 40.88466700064975);
 
+        //then
         assertEquals(stations.getStations().get(5).getProperties().getName(), closestStation.getProperties().getName());
 
     }
@@ -112,14 +111,13 @@ class ParseJsonTest {
         //given
         ParseJson parseStation = new ParseJson();
         ParseLine parseLine = new ParseLine();
-
-        //when
         AllStations stations = parseStation.jsonReader();
         ArrayList<Line> lines = parseLine.parseLine();
         Connections connections = new Connections();
         connections.setAllConnections(stations, lines);
-        int shortestPath;
+        ArrayList shortestPath;
 
+        //when
         Station startStation = stations.getStations().get(83);
         Station destination = stations.getStations().get(370);
 
@@ -128,7 +126,7 @@ class ParseJsonTest {
         shortestPath = path.getShortestPath();
 
         //then
-        assertEquals(2, shortestPath);
+        assertEquals(3, shortestPath.size());
     }
 }
 

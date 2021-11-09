@@ -14,12 +14,12 @@ public class ShortestPath {
         this.destination = destination;
     }
 
-    public int getShortestPath() {
+    public ArrayList<Station> getShortestPath() {
 
         ArrayList<Station> unvisited = allStations.getStations();
         ArrayList<Station> visited = new ArrayList<>();
         ArrayList<Station> conn = new ArrayList<>();
-        ArrayList<Station> prev = new ArrayList<>();
+        ArrayList<Station> shortestPath = new ArrayList<>();
         startPoint.setDistance(0);
         Station curr = startPoint;
         conn.add(startPoint);
@@ -27,8 +27,7 @@ public class ShortestPath {
         do {
             //get connections of current station
             for (Station station : curr.getConnections()) {
-               
-                prev.add(station);
+
                 if(!visited.contains(station) && !conn.contains(station)) {
                     if (conn.contains(station)) {
                         if (station.getDistance() < curr.getDistance() + 1) {
@@ -40,6 +39,7 @@ public class ShortestPath {
                         station.setDistance(curr.getDistance() + 1);
                     }
                     conn.add(station);
+                    station.setPrevious(curr);
                 }
             }
             unvisited.remove(curr);
@@ -49,7 +49,19 @@ public class ShortestPath {
         }
         while (!visited.contains(destination));
 
-        return destination.getDistance();
+
+        shortestPath.add(destination);
+
+        Station previous = destination.getPrevious();
+        shortestPath.add(previous);
+
+        while(previous != startPoint)
+        {
+            previous = previous.getPrevious();
+            shortestPath.add(previous);
+        }
+
+        return shortestPath;
     }
 }
 

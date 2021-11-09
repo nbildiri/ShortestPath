@@ -7,6 +7,7 @@ public class Station {
     private Geometry geometry;
     private HashSet<Station> connections;
     private int distance;
+    private Station previous;
 
     public Station(Properties properties, Geometry geometry) {
         this.properties = properties;
@@ -39,6 +40,14 @@ public class Station {
 
     public HashSet<Station> getConnections() {
         return connections;
+    }
+
+    public void setPrevious(Station previous) {
+        this.previous = previous;
+    }
+
+    public Station getPrevious() {
+        return previous;
     }
 }
 
