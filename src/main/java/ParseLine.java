@@ -2,6 +2,8 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -18,7 +20,8 @@ public class ParseLine {
 
         Gson gson = new Gson();
 
-        Reader reader = Files.newBufferedReader(Paths.get("SubwayLines.json"));
+        InputStream in = getClass().getClassLoader().getResourceAsStream("SubwayLines.json");
+        InputStreamReader reader = new InputStreamReader(in);
 
         // convert JSON file to map
         SubwayLinesJson map = gson.fromJson(reader, SubwayLinesJson.class);

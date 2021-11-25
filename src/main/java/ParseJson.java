@@ -1,4 +1,6 @@
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -12,7 +14,8 @@ public class ParseJson {
 
         Gson gson = new Gson();
 
-        Reader reader = Files.newBufferedReader(Paths.get("SubwayStations.json"));
+        InputStream in = getClass().getClassLoader().getResourceAsStream("SubwayStations.json");
+        InputStreamReader reader = new InputStreamReader(in);
 
         AllStations allStations = gson.fromJson(reader, AllStations.class);
 

@@ -12,7 +12,7 @@
     <servlet>
         <display-name>PathServlet</display-name>
         <servlet-name>PathServlet</servlet-name>
-        <servlet-class>src/main/java/PathServlet.java</servlet-class>
+        <servlet-class>PathServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>

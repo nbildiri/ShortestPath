@@ -2,6 +2,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -74,6 +75,26 @@ class ParseJsonTest {
     }
 
     @Test
+    void setAllConnections() throws IOException {
+
+        //given
+        ParseJson parseStation = new ParseJson();
+        ParseLine parseLine = new ParseLine();
+        AllStations stations = parseStation.jsonReader();
+        ArrayList<Line> lines = parseLine.parseLine();
+        Connections connections = new Connections();
+        HashSet<Station> conn;
+
+        //when
+        connections.setAllConnections(stations, lines);
+
+        //then
+        assertTrue(stations.getStations().get(0).getConnections().contains(stations.getStations().get(104)));
+        assertTrue(stations.getStations().get(370).getConnections().contains(stations.getStations().get(432)));
+
+    }
+
+    @Test
     void closestStation() throws IOException {
         //given
         ParseJson parseStation = new ParseJson();
@@ -87,21 +108,17 @@ class ParseJsonTest {
         //connection
         Connections connections = new Connections();
 
-        //closest Station
-        Station closestStation;
         //start point - astor pl
-        closestStation = connections.getClosestStation(stations, -73.99106999861966,
+        Station startPoint = connections.getClosestStation(stations, -73.99106999861966,
                 40.73005400028978);
 
-        assertEquals(stations.getStations().get(0).getProperties().getName(), closestStation.getProperties().getName());
-
-
         //end point - 238th street
-        closestStation = connections.getClosestStation(stations, -73.90087000018522,
+        Station endPoint = connections.getClosestStation(stations, -73.90087000018522,
                 40.88466700064975);
 
         //then
-        assertEquals(stations.getStations().get(5).getProperties().getName(), closestStation.getProperties().getName());
+        assertEquals(stations.getStations().get(0), startPoint);
+        assertEquals(stations.getStations().get(5), endPoint);
 
     }
 
@@ -115,7 +132,7 @@ class ParseJsonTest {
         ArrayList<Line> lines = parseLine.parseLine();
         Connections connections = new Connections();
         connections.setAllConnections(stations, lines);
-        ArrayList shortestPath;
+        ArrayList<Station> shortestPath;
 
         //when
         Station startStation = stations.getStations().get(83);
@@ -127,6 +144,9 @@ class ParseJsonTest {
 
         //then
         assertEquals(3, shortestPath.size());
+        assertEquals(startStation, shortestPath.get(2));
+        assertEquals("Broadway - Lafayette St", shortestPath.get(1).getProperties().getName());
+        assertEquals(destination, shortestPath.get(0));
     }
 }
 

@@ -46,8 +46,6 @@ public class PathServlet extends HttpServlet {
 
         shortestPath = new ShortestPath(stations,start, end);
 
-
-
         List<Station> stationList = shortestPath.getShortestPath();
         String json = gson.toJson(stationList);
 
