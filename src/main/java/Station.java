@@ -5,7 +5,7 @@ public class Station {
 
     private Properties properties;
     private Geometry geometry;
-    private HashSet<Station> connections;
+    private transient HashSet<Station> connections;
     private int distance;
     private Station previous;
 
