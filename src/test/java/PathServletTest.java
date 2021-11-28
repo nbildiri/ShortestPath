@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -12,7 +13,7 @@ import static org.mockito.Mockito.*;
 class PathServletTest {
 
     @Test
-    public void doGet() throws IOException {
+    void doGet() throws IOException {
 
         // given
         PathServlet servlet = new PathServlet();
@@ -32,5 +33,35 @@ class PathServletTest {
         verify(out).println(anyString());
     }
 
+    @Test
+    void pathServletTest() throws IOException {
+        //given
+        ParseJson parseStation = new ParseJson();
+        ParseLine parseLine = new ParseLine();
+        AllStations stations = parseStation.jsonReader();
+        ArrayList<Line> lines = parseLine.parseLine();
+
+        //when
+        Station station = stations.getStations().get(83);
+
+        //connection
+        Connections connections = new Connections();
+
+
+        //start point - astor pl
+        Station startPoint = connections.getClosestStation(stations, -73.99106999861966,
+                40.73005400028978);
+
+        //end point - 238th street
+        Station endPoint = connections.getClosestStation(stations, -73.90087000018522,
+                40.88466700064975);
+
+        //then
+        assertEquals(stations.getStations().get(0), connections.getClosestStation(stations, -73.9543462, 40.5876923));
+
+    }
+
 
 }
+
+

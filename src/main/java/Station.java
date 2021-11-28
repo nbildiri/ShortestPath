@@ -6,8 +6,8 @@ public class Station {
     private Properties properties;
     private Geometry geometry;
     private transient HashSet<Station> connections;
-    private int distance;
-    private Station previous;
+    private transient int distance;
+    private transient Station previous;
 
     public Station(Properties properties, Geometry geometry) {
         this.properties = properties;

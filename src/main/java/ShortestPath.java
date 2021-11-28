@@ -55,6 +55,8 @@ public class ShortestPath {
             shortestPath.add(previous);
         }
 
+        Collections.reverse(shortestPath);
+
         return shortestPath;
     }
 }

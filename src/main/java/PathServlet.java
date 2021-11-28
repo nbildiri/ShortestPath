@@ -41,8 +41,8 @@ public class PathServlet extends HttpServlet {
         double lon1 = Double.parseDouble(request.getParameter("lon1"));
         double lat2 = Double.parseDouble(request.getParameter("lat2"));
         double lon2 = Double.parseDouble(request.getParameter("lon2"));
-        Station start = connections.getClosestStation(stations, lat1, lon1);
-        Station end = connections.getClosestStation(stations, lat2, lon2);
+        Station start = connections.getClosestStation(stations, lon1, lat1);
+        Station end = connections.getClosestStation(stations, lon2, lat2);
 
         shortestPath = new ShortestPath(stations,start, end);
 

@@ -108,6 +108,7 @@ class ParseJsonTest {
         //connection
         Connections connections = new Connections();
 
+
         //start point - astor pl
         Station startPoint = connections.getClosestStation(stations, -73.99106999861966,
                 40.73005400028978);
@@ -117,7 +118,7 @@ class ParseJsonTest {
                 40.88466700064975);
 
         //then
-        assertEquals(stations.getStations().get(0), startPoint);
+        assertEquals(stations.getStations().get(0), connections.getClosestStation(stations,-73.99, 40.73));
         assertEquals(stations.getStations().get(5), endPoint);
 
     }
@@ -144,9 +145,12 @@ class ParseJsonTest {
 
         //then
         assertEquals(3, shortestPath.size());
-        assertEquals(startStation, shortestPath.get(2));
+        assertEquals(startStation, shortestPath.get(0));
         assertEquals("Broadway - Lafayette St", shortestPath.get(1).getProperties().getName());
-        assertEquals(destination, shortestPath.get(0));
+        assertEquals(destination, shortestPath.get(2));
     }
+
+
+
 }
 
