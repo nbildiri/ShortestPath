@@ -1,26 +1,21 @@
-import java.util.Arrays;
+import com.google.gson.annotations.SerializedName;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class AllStations {
 
-    private Features[] features;
+    @SerializedName("features")
+    private ArrayList<Station> stations;
 
 
-    public AllStations(Features[] features) {
-        this.features = features;
+    public AllStations(ArrayList<Station> stations) {
+        this.stations = stations;
     }
 
-    public Features[] getFeatures() {
-        return features;
+    public ArrayList<Station> getStations() {
+        return stations;
     }
 
-    public Features getFeatureInArray(int num) {
-        return features[num];
-    }
 
-    @Override
-    public String toString() {
-        return "AllStations{" +
-                "features=" + Arrays.toString(features) +
-                '}';
-    }
 }
